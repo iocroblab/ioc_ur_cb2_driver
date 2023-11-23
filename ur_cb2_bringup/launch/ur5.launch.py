@@ -48,7 +48,7 @@ def generate_launch_description():
     )
     declared_arguments.append(
         DeclareLaunchArgument(
-            "use_fake_hardware",
+            "use_mock_hardware",
             default_value="false",
             description="Start robot with fake hardware mirroring command to its states.",
         )
@@ -75,7 +75,7 @@ def generate_launch_description():
 
     # Initialize Arguments
     robot_ip = LaunchConfiguration("robot_ip")
-    use_fake_hardware = LaunchConfiguration("use_fake_hardware")
+    use_mock_hardware = LaunchConfiguration("use_mock_hardware")
     initial_joint_controller = LaunchConfiguration("initial_joint_controller")
     activate_joint_controller = LaunchConfiguration("activate_joint_controller")
 
@@ -84,7 +84,7 @@ def generate_launch_description():
         launch_arguments={
             "ur_type": "ur5",
             "robot_ip": robot_ip,
-            "use_fake_hardware": use_fake_hardware,
+            "use_mock_hardware": use_mock_hardware,
             "initial_joint_controller": initial_joint_controller,
             "activate_joint_controller": activate_joint_controller,
         }.items(),

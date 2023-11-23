@@ -113,7 +113,7 @@ def launch_setup(context, *args, **kwargs):
         executable="ros2_control_node",
         parameters=[robot_description, initial_joint_controllers],
         output= "screen",
-        condition=IfCondition(use_fake_hardware),
+        condition=IfCondition(use_mock_hardware),
     )
 
     ur_control_node = Node(
@@ -121,7 +121,7 @@ def launch_setup(context, *args, **kwargs):
         executable="ur_ros2_control_node",
         parameters=[robot_description, initial_joint_controllers],
         output= "screen",
-        condition=UnlessCondition(use_fake_hardware),
+        condition=UnlessCondition(use_mock_hardware),
     )
 
     robot_state_publisher_node = Node(
@@ -242,7 +242,7 @@ def generate_launch_description():
     declared_arguments.append(
         DeclareLaunchArgument(
             "description_package",
-            default_value="ur_cb2_description",
+            default_value="ur_description",
             description="Description package with robot URDF/XACRO files. Usually the argument \
         is not set, it enables use of a custom description.",
         )
