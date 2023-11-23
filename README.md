@@ -34,7 +34,6 @@ And delete (or comment) the xacro group, between lines 190 - 375:
 Finally, at the root of your ROS 2 workspace, build using:
 ```
 colcon build --symlink-install
-source install/setup.bash
 ``` 
 
 ## Usage instruction
@@ -58,14 +57,14 @@ Once the robot driver is running, you can move the robot using the topics:
 - Position controller case:
 ```
 ros2 topic pub --once /forward_position_controller/commands std_msgs/msg/Float64MultiArray "layout:
-    dim: []
-    data_offset: 0
-    data: [#,#,#,#,#,#]" 
+  dim: []
+  data_offset: 0
+data: [#,#,#,#,#,#]"
 ```
 - Velocity controller case:
 ```
 ros2 topic pub --once /forward_velocity_controller/commands std_msgs/msg/Float64MultiArray "layout:
-    dim: []
-    data_offset: 0
-    data: [0,0,0,0,0,0]" 
+  dim: []
+  data_offset: 0
+data: [#,#,#,#,#,#]"
 ```
