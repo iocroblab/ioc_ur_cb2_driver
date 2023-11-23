@@ -27,6 +27,10 @@ to:
 ```
 <plugin>ur_cb2_robot_driver/URPositionHardwareInterface</plugin>
 ```
+And delete (or comment) the xacro group, between lines 190 - 375:
+```
+<xacro:unless value="${sim_gazebo or sim_ignition}">
+```
 Finally, at the root of your ROS 2 workspace, build using:
 ```
 colcon build --symlink-install
@@ -50,7 +54,18 @@ ros2 launch ur_cb2_bringup ur_control.launch.py ur_type:=<UR_TYPE> robot_ip:=<IP
     ros2 launch ur_cb2_bringup ur5.launch.py robot_ip:=XXX.XXX.XX.XXX
     ```
 
-Once the robot driver is running, you can launch the Moveit2 to plan the robot's motion in Rviz2:
+Once the robot driver is running, you can move the robot using the topics:
+- Position controller case:
 ```
-ros2 launch ur_cb2_moveit_config ur_moveit.launch.py ur_type:=<UR_TYPE>
+ros2 topic pub --once /forward_position_controller/commands std_msgs/msg/Float64MultiArray "layout:
+    dim: []
+    data_offset: 0
+    data: [#,#,#,#,#,#]" 
+```
+- Velocity controller case:
+```
+ros2 topic pub --once /forward_velocity_controller/commands std_msgs/msg/Float64MultiArray "layout:
+    dim: []
+    data_offset: 0
+    data: [0,0,0,0,0,0]" 
 ```
