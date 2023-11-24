@@ -13,6 +13,9 @@ Second it is necessary to clone/link the following repositories:
 git clone https://github.com/UniversalRobots/Universal_Robots_ROS2_Description.git -b ros2
 git clone https://github.com/jhu-cisst/cisst -b devel
 git clone https://github.com/jhu-cisst/cisstNetlib -b devel
+```
+Not needed (tested), but required by cisst owner:
+```
 git clone https://github.com/jhu-cisst/ros2_cisst_msgs.git -b main
 git clone https://github.com/jhu-cisst/cisst_ros2_bridge.git -b main
 git clone https://github.com/collaborative-robotics/ros2_crtk_msgs.git -b main
