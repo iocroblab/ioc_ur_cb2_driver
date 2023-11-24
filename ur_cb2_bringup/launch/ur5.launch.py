@@ -31,9 +31,10 @@
 # Modified by: Joshua Liu
 
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, GroupAction
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration, ThisLaunchFileDir
+from launch_ros.actions import PushRosNamespace
 
 
 def generate_launch_description():
@@ -84,10 +85,18 @@ def generate_launch_description():
         launch_arguments={
             "ur_type": "ur5",
             "robot_ip": robot_ip,
+            # "prefix": "arm_right_",
+            # "controllers_file":"ur_controllers_right.yaml",
             "use_mock_hardware": use_mock_hardware,
             "initial_joint_controller": initial_joint_controller,
             "activate_joint_controller": activate_joint_controller,
         }.items(),
     )
+    base_launch_with_namespace = GroupAction(
+     actions=[
+         PushRosNamespace('arm_right'),
+         base_launch,
+      ]
+   )
 
     return LaunchDescription(declared_arguments + [base_launch])
