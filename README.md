@@ -6,33 +6,20 @@ It was modified and updated by Pol Ramon Canyameres and by Leopold Palomo-Avella
 ## Install and build the package
 First create a workspace:
 ```
-mkdir -p ws_madar/src | cd ws_madar/src
+mkdir -p ws_arm/src | cd ws_arm/src
 ``` 
-Second it is necessary to clone/link the following repositories:
+It is necessary to clone the following repositories:
 ```
-git clone https://github.com/UniversalRobots/Universal_Robots_ROS2_Description.git -b ros2
 git clone https://github.com/jhu-cisst/cisst -b devel
 git clone https://github.com/jhu-cisst/cisstNetlib -b devel
 ```
-Not needed (tested), but required by cisst owner:
+And have installed:
 ```
-git clone https://github.com/jhu-cisst/ros2_cisst_msgs.git -b main
-git clone https://github.com/jhu-cisst/cisst_ros2_bridge.git -b main
-git clone https://github.com/collaborative-robotics/ros2_crtk_msgs.git -b main
-git clone https://github.com/jhu-cisst/cisst_ros2_crtk.git -b main
-git clone https://github.com/jhu-saw/sawConstraintController.git -b devel
-```
-Inside the ur_description package the urdf/ur.ros2_control.xacro file must be modified from:
-```
-<plugin>ur_robot_driver/URPositionHardwareInterface</plugin>
-```
-to:
-```
-<plugin>ur_cb2_robot_driver/URPositionHardwareInterface</plugin>
-```
-And delete (or comment) the xacro group, between lines 190 - 375:
-```
-<xacro:unless value="${sim_gazebo or sim_ignition}">
+sudo apt install ros-humble-xacro
+sudo apt install ros-humble-ros2-control
+sudo apt install ros-humble-ros2-controllers
+sudo apt install ros-humble-controller-manager
+sudo apt install ros-humble-ur-description
 ```
 Finally, at the root of your ROS 2 workspace, build using:
 ```
